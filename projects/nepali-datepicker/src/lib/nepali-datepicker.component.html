@@ -1,0 +1,30 @@
+<div class="d-container">
+  <div class="d-header">
+    <select (change)="onYearChange($event)">
+      <option value="2080">2080</option>
+      <option value="2079">2079</option>
+      <option value="2078">2078</option>
+    </select>
+    <select>
+      <option value="0">Baisakh</option>
+      <option value="1">Jestha</option>
+      <option value="2">Asar</option>
+    </select>
+  </div>
+  <div class="d-dates">
+    <div class="d-week">
+      <div>Sun</div>
+      <div>Mon</div>
+      <div>Tue</div>
+      <div>Wed</div>
+      <div>Thu</div>
+      <div>Fri</div>
+      <div>Sat</div>
+    </div>
+    <div class="d-grid">
+      @for(date of allMonthDates ; track date){
+      <div class="date">{{ date }}</div>
+      }
+    </div>
+  </div>
+</div>

@@ -10,6 +10,11 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
+    "paths": {
+      "nepali-datepicker": [
+        "./dist/nepali-datepicker"
+      ]
+    },
     "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,

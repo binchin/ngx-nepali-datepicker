@@ -1,0 +1,24 @@
+.d-container {
+  width: 280px;
+
+  .d-dates {
+    .d-week,
+    .d-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 10px;
+    }
+
+    .d-grid {
+      margin-top: 10px;
+
+      .date {
+        cursor: pointer;
+
+        &:nth-child(7n) {
+          background-color: #e6f7ff; /* Adjust the background color as needed */
+        }
+      }
+    }
+  }
+}

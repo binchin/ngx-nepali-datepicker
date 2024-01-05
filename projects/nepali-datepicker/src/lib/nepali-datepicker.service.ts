@@ -17,32 +17,40 @@ export class NepaliDatepickerService {
   fullDateSubject = new BehaviorSubject<BikramSambat>(this.currentDate);
   fullDate$ = this.fullDateSubject.asObservable();
 
-  monthSubject = new BehaviorSubject<number>(this.month);
-  monthSelectedAction$ = this.monthSubject.asObservable();
-
-  yearSubject = new BehaviorSubject<number>(this.year);
-  yearSelectedAction$ = this.yearSubject.asObservable();
+  todaysDate$ = of(this.currentDate);
 
   constructor() {}
 
-  onMonthChange(month: number): void {
-    const date: BikramSambat = new BikramSambat();
-    date.setMonth(month);
+  onDateChange(date: BikramSambat): void {
     this.fullDateSubject.next(date);
-    this.monthSubject.next(month);
+  }
+
+  onPrevious(): void {
+    const date = this.fullDateSubject.value;
+    let newMonth = date.getMonth() - 1;
+    date.setMonth(newMonth);
+    if (newMonth === 0) {
+      date.setYear(date.getYear() - 1);
+      date.setMonth(12);
+    }
+    this.fullDateSubject.next(date);
+  }
+
+  onNext(): void {
+    let date = this.fullDateSubject.value;
+    date = date.addMonths(1);
+    this.fullDateSubject.next(date);
   }
 
   onYearChange(year: number): void {
-    const date: BikramSambat = new BikramSambat();
+    const date = this.fullDateSubject.value;
     date.setYear(year);
-    console.log(date);
     this.fullDateSubject.next(date);
-    this.yearSubject.next(year);
   }
 
-  emitChange(date: BikramSambat): void {
-    this.startOfTheMonth = date.startOfMonth();
-    this.endOfTheMonth = date.endOfMonth();
-    this.startWeekDay = this.startOfTheMonth.getDayOfWeek();
+  onMonthChange(month: number): void {
+    const date = this.fullDateSubject.value;
+    date.setMonth(month);
+    this.fullDateSubject.next(date);
   }
 }

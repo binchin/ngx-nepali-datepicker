@@ -26,7 +26,7 @@ export class NepaliDatepickerComponent implements OnInit {
   @Input() languagePreference: string = 'np';
   datePicker = inject(NepaliDatepickerService);
   utilityService = inject(UtilityService);
-  years: number[] = listOfYears;
+  years: number[] = listOfYears();
   months: Month[] = listOfMonths;
   currentMonth!: number;
   currentYear!: number;
